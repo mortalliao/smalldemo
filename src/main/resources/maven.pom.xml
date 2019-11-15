@@ -1,0 +1,25 @@
+<build>
+    <finalName>java-io</finalName>
+    <resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <!--properties的配置文件会和编译后的class文件放在一起-->
+                <include>**/*.properties</include>
+            </includes>
+        </resource>
+        <resource>
+            <!--加载配置的资源-->
+            <directory>src/main/resources</directory>
+        </resource>
+    </resources>
+    <plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
