@@ -7,21 +7,6 @@ import java.lang.reflect.Method;
 
 /**
  * @author Jim
- * <p>
- * 获得类相关的方法
- * 方法   用途
- * asSubclass(Class<U> clazz)   把传递的类的对象转换成代表其子类的对象
- * Cast     把对象转换成代表类或是接口的对象
- * getClassLoader()     获得类的加载器
- * getClasses()     返回一个数组，数组中包含该类中所有公共类和接口类的对象
- * getDeclaredClasses()     返回一个数组，数组中包含该类中所有类和接口类的对象
- * forName(String className)    根据类名返回类的对象
- * getName()    获得类的完整路径名字
- * newInstance()    创建类的实例
- * getPackage()     获得类的包
- * getSimpleName()      获得类的名字
- * getSuperclass()      获得当前类继承的父类的名字
- * getInterfaces()      获得当前类实现的类或是接口
  */
 public class ClassTest {
 
@@ -80,7 +65,7 @@ public class ClassTest {
         String returnFromMethod = (String) method.invoke(obj, "easy, right?");
         System.out.println(returnFromMethod);
         // get annotation
-
+        TestAnnotation annotation = method.getAnnotation(TestAnnotation.class);
     }
 
 }

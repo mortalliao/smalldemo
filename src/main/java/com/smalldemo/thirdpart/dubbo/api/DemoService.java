@@ -1,4 +1,4 @@
-package com.smalldemo.dubbo.api;
+package com.smalldemo.thirdpart.dubbo.api;
 
 /**
  * @author Jim

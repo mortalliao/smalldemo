@@ -1,6 +1,6 @@
-package com.smalldemo.dubbo.provider.impl;
+package com.smalldemo.thirdpart.dubbo.provider.impl;
 
-import com.smalldemo.dubbo.api.DemoService;
+import com.smalldemo.thirdpart.dubbo.api.DemoService;
 
 /**
  * @author Jim

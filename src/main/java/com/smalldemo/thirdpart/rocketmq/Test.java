@@ -1,4 +1,4 @@
-package com.smalldemo.rocketmq;
+package com.smalldemo.thirdpart.rocketmq;
 
 /**
  * @author Jim

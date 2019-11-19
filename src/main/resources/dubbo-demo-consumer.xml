@@ -10,5 +10,5 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:reference interface="com.smalldemo.dubbo.api.DemoService" id="demoService" check="false"/>
+    <dubbo:reference interface="com.smalldemo.thirdpart.dubbo.api.DemoService" id="demoService" check="false"/>
 </beans>

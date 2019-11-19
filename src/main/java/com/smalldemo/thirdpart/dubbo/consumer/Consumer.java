@@ -1,6 +1,6 @@
-package com.smalldemo.dubbo.consumer;
+package com.smalldemo.thirdpart.dubbo.consumer;
 
-import com.smalldemo.dubbo.api.DemoService;
+import com.smalldemo.thirdpart.dubbo.api.DemoService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**

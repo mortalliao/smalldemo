@@ -1,4 +1,4 @@
-package com.smalldemo.dubbo.provider;
+package com.smalldemo.thirdpart.dubbo.provider;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
