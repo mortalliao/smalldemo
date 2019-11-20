@@ -2,6 +2,8 @@ package com.smalldemo.concurrent;
 
 /**
  * @author Jim
+ * <p>
+ * 生产者和消费者案例
  */
 public class TestProductorAndConsumer {
 
@@ -14,6 +16,8 @@ public class TestProductorAndConsumer {
         new Thread(productor, "生产者 A").start();
         new Thread(consumer, "消费者 B").start();
 
+        new Thread(productor, "生产者 C").start();
+        new Thread(consumer, "消费者 D").start();
     }
 }
 
@@ -23,21 +27,35 @@ class Clerk {
     private int product = 0;
 
     // 进货
-    public void get() {
-        if (product >= 10) {
+    public synchronized void get() {
+        while (product >= 1) {  //为了避免虚假唤醒问题, 应该总是使用在循环中
             System.out.println("产品已满!");
-        } else {
-            System.out.println(Thread.currentThread().getName() + ":" + ++product);
+
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+        System.out.println(Thread.currentThread().getName() + ":" + ++product);
+
+        this.notifyAll();
     }
 
     // 卖货
-    public void sale() {
-        if (product <= 0) {
+    public synchronized void sale() {
+        while (product <= 0) {
             System.out.println("缺货!");
-        } else {
-            System.out.println(Thread.currentThread().getName() + ":" + --product);
+
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+        System.out.println(Thread.currentThread().getName() + ":" + --product);
+
+        this.notifyAll();
     }
 }
 
