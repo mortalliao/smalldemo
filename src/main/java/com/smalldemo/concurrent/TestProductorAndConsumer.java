@@ -1,5 +1,9 @@
 package com.smalldemo.concurrent;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * @author Jim
  * <p>
@@ -26,36 +30,56 @@ class Clerk {
 
     private int product = 0;
 
+    private Lock lock = new ReentrantLock();
+    private Condition condition = lock.newCondition();
+
     // 进货
-    public synchronized void get() {
-        while (product >= 1) {  //为了避免虚假唤醒问题, 应该总是使用在循环中
-            System.out.println("产品已满!");
+    public /*synchronized*/ void get() {
+        lock.lock();
 
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        try {
+            while (product >= 1) {  //为了避免虚假唤醒问题, 应该总是使用在循环中
+                System.out.println("产品已满!");
+
+                try {
+                    /*this.wait();*/
+                    condition.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        System.out.println(Thread.currentThread().getName() + ":" + ++product);
+            System.out.println(Thread.currentThread().getName() + ":" + ++product);
 
-        this.notifyAll();
+            /*this.notifyAll();*/
+            condition.signalAll();
+        } finally {
+            lock.unlock();
+        }
     }
 
     // 卖货
-    public synchronized void sale() {
-        while (product <= 0) {
-            System.out.println("缺货!");
+    public /*synchronized*/ void sale() {
 
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        lock.lock();
+
+        try{
+            while (product <= 0) {
+                System.out.println("缺货!");
+
+                try {
+                    /*this.wait();*/
+                    condition.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        System.out.println(Thread.currentThread().getName() + ":" + --product);
+            System.out.println(Thread.currentThread().getName() + ":" + --product);
 
-        this.notifyAll();
+            /*this.notifyAll();*/
+            condition.signalAll();
+        } finally {
+            lock.unlock();
+        }
     }
 }
 
