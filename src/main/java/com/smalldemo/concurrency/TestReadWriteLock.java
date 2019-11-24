@@ -1,4 +1,4 @@
-package com.smalldemo.concurrent;
+package com.smalldemo.concurrency;
 
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;

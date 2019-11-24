@@ -2,6 +2,18 @@ package com.smalldemo.multithreading.thread;
 
 /**
  * @author Jim
+ *
+ * <pre>
+ *
+ *  多个线程访问共享对象和数据的方式
+ *
+ *     如果每个线程执行的代码相同, 可以使用同一个Runable对象, 这个Runable对象中有那个共享数据
+ *
+ *     案例: 只卖票
+ *
+ * </pre>
+ *
+ *
  */
 public class MultiThreadShareData {
 

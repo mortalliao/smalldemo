@@ -1,4 +1,4 @@
-package com.smalldemo.concurrent;
+package com.smalldemo.concurrency;
 
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
