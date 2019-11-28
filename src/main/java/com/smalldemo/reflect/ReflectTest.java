@@ -22,6 +22,11 @@ public class ReflectTest {
         return "success";
     }
 
+    public String callTest(String str, Son son) {
+        System.out.println("Reflect Test calling ...");
+        return "success";
+    }
+
     public String getName() {
         return name;
     }
