@@ -4,7 +4,7 @@ package com.smalldemo.java8;
  * @author Jim
  */
 @FunctionalInterface
-public interface MyPredicate<T> {
+public interface MyFun {
 
-    public boolean test(T t);
+    public Integer getValue(Integer num);
 }
