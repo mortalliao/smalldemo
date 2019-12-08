@@ -26,7 +26,7 @@ public class JAXBExample {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             //写到文件中
-            File file = getClasspathFile("com/smalldemo/jaxb/example1/file.xml");
+            File file = getClasspathFile("jaxb_test_file.xml");
             jaxbMarshaller.marshal(customer, file);
 
             //写到控制台

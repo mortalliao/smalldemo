@@ -1,5 +1,7 @@
 package com.smalldemo.jaxb.example1;
 
+import lombok.Data;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -7,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * @author Jim
  */
+@Data
 @XmlRootElement(name = "customer")
 public class Customer {
 
