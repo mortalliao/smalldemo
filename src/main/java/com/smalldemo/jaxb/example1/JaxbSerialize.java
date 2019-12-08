@@ -11,7 +11,7 @@ import java.net.URL;
 /**
  * @author Jim
  */
-public class JAXBExample {
+public class JaxbSerialize {
 
     public static void main(String[] args) {
         Customer customer = new Customer();
@@ -43,7 +43,7 @@ public class JAXBExample {
     }
 
     private static File getClasspathFile(String filename) {
-        ClassLoader classLoader = JAXBExample.class.getClassLoader();
+        ClassLoader classLoader = JaxbSerialize.class.getClassLoader();
         URL url = classLoader.getResource(filename);
         assert url != null;
         return new File(url.getFile());

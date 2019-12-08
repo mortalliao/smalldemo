@@ -1,6 +1,4 @@
-package com.smalldemo.jaxb.example3;
-
-import com.smalldemo.jaxb.example1.Customer;
+package com.smalldemo.jaxb.example1;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -11,7 +9,7 @@ import java.io.StringReader;
 /**
  * @author Jim
  */
-public class TestJaxb {
+public class JaxbDeserialize {
 
     public static void main(String[] args) throws JAXBException {
         // 1. 通过映射的类创建XMLComtext上下文对象，其中参数为映射的类。
@@ -29,7 +27,7 @@ public class TestJaxb {
                 "    <userName>this is username!</userName>\n" +
                 "</customer>\n";
         StringReader stringReader = new StringReader(xmlStr);
-        Customer customer1 = (Customer)unmarshaller.unmarshal(stringReader);
+        Customer customer1 = (Customer) unmarshaller.unmarshal(stringReader);
         System.out.println(customer1);
     }
 }
