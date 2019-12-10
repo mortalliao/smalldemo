@@ -2,143 +2,137 @@ package com.smalldemo.java8.lambda;
 
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * @author Jim
+ *
+ * <pre>
+ * Java8 内置的四大核心函数式接口
+ *
+ *
+ * Consumer<T> : 消费型接口
+ *      void accept(T t);
+ *
+ *
+ * Supplier<T> : 供给型接口
+ *      T get();
+ *
+ *
+ * Function<T, R> : 函数型接口
+ *      R apply(T t);
+ *
+ *
+ * Predicate<T> : 断言型接口
+ *      boolean test(T t);
+ *
+ *
+ *
+ * BiFunction<T, U, R>
+ *     参数 T, U  返回 R
+ *
+ *
+ * UnaryOperator<T>
+ *     参数 T     返回 T
+ *
+ * BinaryOperator<T>
+ *     参数 T, T  返回 T
+ *
+ * BiConsumer<T, U>
+ *     参数 T, U  返回 void
+ *
+ * ToIntFunction<T>
+ * ToLongFunction<T>
+ * ToDoubleFunction<T>
+ *
+ * IntFunction<R>
+ * LongFunction<R>
+ * DoubleFunction<R>
+ *
+ * </pre>
  */
 public class LambdaTest {
 
     /**
-     * 原来的匿名内部类
+     * Consumer<T> 消费型接口
      */
     @Test
     public void test1() {
-        Comparator<Integer> comparator = new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return Integer.compare(o1, o2);
-            }
-        };
-        TreeSet<Integer> treeSet = new TreeSet<>(comparator);
+        happy(10000, m -> System.out.println("消费" + m + "元"));
+    }
+
+    public void happy(double money, Consumer<Double> consumer) {
+        consumer.accept(money);
     }
 
     /**
-     * Lambda表达式
+     * Supplier<T> 供给型接口
      */
     @Test
     public void test2() {
-        Comparator<Integer> comparator = (x, y) -> Integer.compare(x, y);
-        TreeSet<Integer> treeSet = new TreeSet<>(comparator);
+        List<Integer> numList = getNumList(10, () -> (int) (Math.random() * 100));
+
+        for (Integer num : numList) {
+            System.out.println(num);
+        }
     }
 
-    List<Employee> employees = Arrays.asList(
-            new Employee("张三", 18, 9999.99),
-            new Employee("李四", 38, 5555.55),
-            new Employee("王五", 50, 6666.66),
-            new Employee("赵六", 16, 3333.33),
-            new Employee("田七", 8, 7777.77)
-    );
+    public List<Integer> getNumList(int num, Supplier<Integer> supplier) {
+        List<Integer> list = new ArrayList<>();
 
-    /**
-     * 获取当前公司中员工年龄大于35的员工信息
-     */
-    public List<Employee> filterEmployees(List<Employee> list) {
-        List<Employee> emps = new ArrayList<>();
-        for (Employee emp : list) {
-            if (emp.getAge() >= 35) {
-                emps.add(emp);
-            }
+        for (int i = 0; i < num; i++) {
+            Integer n = supplier.get();
+            list.add(n);
         }
-        return emps;
+
+        return list;
     }
 
     /**
-     * 工资大于5000的员工信息
+     * Function<T, R> 函数型接口
      */
-    public List<Employee> filterEmployees2(List<Employee> list) {
-        List<Employee> emps = new ArrayList<>();
-
-        for (Employee emp : list) {
-            if (emp.getSalary() >= 5000) {
-                emps.add(emp);
-            }
-        }
-
-        return emps;
-    }
-
     @Test
     public void test3() {
-        List<Employee> list = filterEmployees(employees);
-        for (Employee employee : list) {
-            System.out.println(employee);
-        }
+        String newStr = strHandler(" \t\t\t Hello World!   ", str -> str.trim());
+        System.out.println(newStr);
+
+        String subStr = strHandler("   Hello World!   ", str -> str.substring(2, 5));
+        System.out.println(subStr);
     }
 
-    public List<Employee> filterEmployee(List<Employee> list, MyPredicate<Employee> myPredicate) {
-        List<Employee> emps = new ArrayList<>();
-
-        for (Employee employee : list) {
-            if (myPredicate.test(employee)) {
-                emps.add(employee);
-            }
-        }
-
-        return emps;
+    public String strHandler(String str, Function<String, String> function) {
+        return function.apply(str);
     }
 
+    /**
+     * Predicate<T> 断言型接口
+     */
     @Test
     public void test4() {
-        // 优化方式一: 策略设计模式
-        List<Employee> list = filterEmployee(this.employees, new FilterEmployeeByAge());
-        for (Employee employee : list) {
-            System.out.println(employee);
-        }
+        List<String> list = Arrays.asList("Hello", "world", "Lambda", "www");
+        List<String> strList = filterStr(list, str -> str.length() > 3);
 
-        System.out.println("------------------------");
-
-        List<Employee> list1 = filterEmployee(this.employees, new FilterEmployeeBySalary());
-        for (Employee employee : list1) {
-            System.out.println(employee);
+        for (String str : strList) {
+            System.out.println(strList);
         }
     }
 
-    @Test
-    public void test5() {
-        // 优化方式二: 匿名内部类
-        List<Employee> list = filterEmployee(this.employees, new MyPredicate<Employee>() {
-            @Override
-            public boolean test(Employee employee) {
-                return employee.getSalary() <= 5000;
+    public List<String> filterStr(List<String> list, Predicate<String> predicate) {
+        List<String> strList = new ArrayList<>();
+
+        for (String str : list) {
+            // 将满足条件的字符串, 放入集合中
+            if (predicate.test(str)) {
+                strList.add(str);
             }
-        });
-
-        for (Employee employee : list) {
-            System.out.println(employee);
         }
+
+        return strList;
     }
-
-    @Test
-    public void test6() {
-        // 优化方式三: Lambda表达式
-        List<Employee> list = filterEmployee(this.employees, (employee) -> employee.getSalary() <= 5000);
-        list.forEach(System.out::println);
-    }
-
-    @Test
-    public void test7() {
-        // 优化方式四: Stream API
-        employees.stream()
-                .filter(employee -> employee.getSalary() >= 5000)
-                .limit(2)
-                .forEach(System.out::println);
-
-        System.out.println("-----------------------");
-
-        employees.stream()
-                .map(Employee::getName)
-                .forEach(System.out::println);
-    }
-
 }
