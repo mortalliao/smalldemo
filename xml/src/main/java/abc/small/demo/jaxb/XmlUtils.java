@@ -1,4 +1,4 @@
-package com.smalldemo.jaxb;
+package abc.small.demo.jaxb;
 
 import lombok.extern.slf4j.Slf4j;
 

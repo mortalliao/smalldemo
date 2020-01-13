@@ -10,15 +10,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>abc.small.demo</groupId>
-    <artifactId>ehcache</artifactId>
+    <artifactId>memcached</artifactId>
 
     <dependencies>
-        <!-- echcahce -->
         <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>2.10.6</version>
+            <groupId>net.spy</groupId>
+            <artifactId>spymemcached</artifactId>
+            <version>2.12.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.spy</groupId>
+            <artifactId>spymemcached-test</artifactId>
+            <version>2.12.3</version>
         </dependency>
     </dependencies>
+
 
 </project>

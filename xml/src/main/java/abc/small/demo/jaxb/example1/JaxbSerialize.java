@@ -1,4 +1,4 @@
-package com.smalldemo.jaxb.example1;
+package abc.small.demo.jaxb.example1;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

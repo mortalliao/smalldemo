@@ -1,4 +1,4 @@
-package com.smalldemo.jaxb.example1;
+package abc.small.demo.jaxb.example1;
 
 import lombok.Data;
 

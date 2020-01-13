@@ -1,4 +1,4 @@
-package com.smalldemo.jaxb.example2;
+package abc.small.demo.jaxb.example2;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;

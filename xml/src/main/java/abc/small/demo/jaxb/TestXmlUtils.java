@@ -1,6 +1,6 @@
-package com.smalldemo.jaxb;
+package abc.small.demo.jaxb;
 
-import com.smalldemo.jaxb.example1.Customer;
+import abc.small.demo.jaxb.example1.Customer;
 import org.junit.Test;
 
 /**
