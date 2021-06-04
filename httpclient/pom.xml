@@ -17,7 +17,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.10</version>
+            <version>4.5.13</version>
         </dependency>
         <!-- 如果需要灵活的传输文件，引入次依赖后会更加方便 -->
         <dependency>
